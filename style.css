@@ -521,6 +521,13 @@ h1, h2, h3, h4, .nav-brand {
   font-size: 0.9rem;
   flex: 1;
 }
+.coming-soon-btn {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
 
 /* Experience / Journey Timeline */
 .journey-container {

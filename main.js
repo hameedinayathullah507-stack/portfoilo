@@ -130,8 +130,10 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 // 1. Grid Helper Floor
 const gridHelper = new THREE.GridHelper(100, 50, 0x06b6d4, 0x8b5cf6);
 gridHelper.position.y = -5;
-gridHelper.material.opacity = 0.2;
-gridHelper.material.transparent = true;
+gridHelper.material.forEach(mat => {
+  mat.opacity = 0.2;
+  mat.transparent = true;
+});
 scene.add(gridHelper);
 
 // 2. Floating Particles Field
