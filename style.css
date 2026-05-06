@@ -456,7 +456,7 @@ h1, h2, h3 {
 }
 .hero-image-wrapper {
   position: relative;
-  width: 250px;
+  width: 280px;
   height: auto;
   flex-shrink: 0;
   display: flex;
@@ -465,21 +465,60 @@ h1, h2, h3 {
 }
 @media (min-width: 768px) {
   .hero-image-wrapper {
-    width: 380px;
+    width: 400px;
   }
 }
+
+/* Sci-fi glowing podium under the image */
+.hero-image-wrapper::before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  width: 80%;
+  height: 20px;
+  background: radial-gradient(ellipse at center, var(--accent-neon-blue) 0%, transparent 70%);
+  filter: blur(8px);
+  opacity: 0.8;
+  z-index: 1;
+  transition: opacity 0.4s ease, width 0.4s ease;
+}
+
+/* Cosmic aura behind the image */
+.hero-image-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(176, 0, 255, 0.15) 0%, transparent 60%);
+  z-index: 1;
+  pointer-events: none;
+}
+
 .hero-person-img {
   width: 100%;
   height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 15px 25px rgba(0, 240, 255, 0.4)) drop-shadow(0 0 40px rgba(176, 0, 255, 0.3));
+  -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+  filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.5)) drop-shadow(0 0 40px rgba(176, 0, 255, 0.3));
   position: relative;
   z-index: 2;
   transition: transform 0.4s ease, filter 0.4s ease;
 }
+
 .hero-image-wrapper:hover .hero-person-img {
-  transform: scale(1.05) translateY(-10px);
-  filter: drop-shadow(0 25px 35px rgba(0, 240, 255, 0.6)) drop-shadow(0 0 60px rgba(176, 0, 255, 0.5));
+  transform: scale(1.05) translateY(-15px);
+  filter: drop-shadow(0 0 25px rgba(0, 240, 255, 0.7)) drop-shadow(0 0 60px rgba(176, 0, 255, 0.5));
+}
+
+.hero-image-wrapper:hover::before {
+  width: 100%;
+  opacity: 1;
+  filter: blur(12px);
 }
 .hero-text {
   flex: 1;
