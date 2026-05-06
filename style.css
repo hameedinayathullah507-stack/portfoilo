@@ -498,21 +498,24 @@ h1, h2, h3 {
   pointer-events: none;
 }
 
+.hero-image-inner {
+  filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.5)) drop-shadow(0 0 40px rgba(176, 0, 255, 0.3));
+  transition: transform 0.4s ease, filter 0.4s ease;
+  z-index: 2;
+  position: relative;
+  width: 100%;
+}
+.hero-image-wrapper:hover .hero-image-inner {
+  transform: scale(1.05) translateY(-15px);
+  filter: drop-shadow(0 0 25px rgba(0, 240, 255, 0.7)) drop-shadow(0 0 60px rgba(176, 0, 255, 0.5));
+}
 .hero-person-img {
   width: 100%;
   height: auto;
+  display: block;
   object-fit: contain;
   -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
-  filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.5)) drop-shadow(0 0 40px rgba(176, 0, 255, 0.3));
-  position: relative;
-  z-index: 2;
-  transition: transform 0.4s ease, filter 0.4s ease;
-}
-
-.hero-image-wrapper:hover .hero-person-img {
-  transform: scale(1.05) translateY(-15px);
-  filter: drop-shadow(0 0 25px rgba(0, 240, 255, 0.7)) drop-shadow(0 0 60px rgba(176, 0, 255, 0.5));
 }
 
 .hero-image-wrapper:hover::before {
