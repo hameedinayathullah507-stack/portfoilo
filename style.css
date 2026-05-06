@@ -458,12 +458,17 @@ h1, h2, h3 {
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--bg-color), #1a1a2e);
-  border: 4px solid transparent;
-  background-clip: padding-box;
+  background: var(--bg-color);
+  border: 4px solid rgba(0, 240, 255, 0.3);
   position: relative;
   margin: 0;
   flex-shrink: 0;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.2), inset 0 0 20px rgba(176, 0, 255, 0.2);
+}
+.glowing-border:hover {
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.4), inset 0 0 30px rgba(176, 0, 255, 0.4);
 }
 @media (min-width: 768px) {
   .glowing-border {
@@ -471,38 +476,50 @@ h1, h2, h3 {
     height: 320px;
   }
 }
+.glowing-border::before,
 .glowing-border::after {
   content: '';
   position: absolute;
-  top: -6px; right: -6px; bottom: -6px; left: -6px;
-  background: linear-gradient(135deg, var(--accent-neon-blue), var(--accent-neon-purple));
+  top: -8px; right: -8px; bottom: -8px; left: -8px;
   border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent, var(--accent-neon-blue), var(--accent-neon-purple), transparent);
   z-index: -1;
-  filter: blur(8px);
+  animation: spinGlow 4s linear infinite;
+}
+.glowing-border::after {
+  filter: blur(15px);
+  opacity: 0.8;
+}
+@keyframes spinGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 .hero-text {
   flex: 1;
 }
 .hero-name {
-  font-size: 3rem;
+  font-size: clamp(2rem, 8vw, 4rem);
   margin-bottom: 0.5rem;
   opacity: 0; /* for GSAP */
-}
-@media (min-width: 768px) {
-  .hero-name { font-size: 4rem; }
+  line-height: 1.2;
 }
 .hero-role {
   font-family: 'Inter', sans-serif;
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 4vw, 1.5rem);
   color: var(--accent-neon-blue);
   margin-bottom: 1rem;
-  min-height: 2rem;
+  min-height: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 @media (min-width: 768px) {
-  .hero-role { justify-content: flex-start; font-size: 1.5rem; }
+  .hero-role { 
+    justify-content: flex-start; 
+    text-align: left; 
+    min-height: 2rem;
+  }
 }
 .cursor {
   display: inline-block;
